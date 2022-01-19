@@ -3,6 +3,7 @@ kotlin = "1.6.10"
 serialization = "1.3.2"
 diktat = "1.0.1"
 junit = "5.8.2"
+save = "0.3.0"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -10,7 +11,11 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 diktat = { id = "org.cqfn.diktat.diktat-gradle-plugin", version.ref = "diktat" }
 
 [libraries]
+save-common = { module = "org.cqfn.save:save-common-jvm", version.ref = "save" }
+save-core = { module = "org.cqfn.save:save-core-jvm", version.ref = "save" }
+save-plugin-warn = { module = "org.cqfn.save:warn-plugin-jvm", version.ref = "save" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-plugin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+sarif4k = { module = "io.github.detekt.sarif4k:sarif4k", version = "0.0.1" }
