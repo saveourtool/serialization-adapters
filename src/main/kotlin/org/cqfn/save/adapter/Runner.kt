@@ -12,7 +12,6 @@ fun main(args: Array<String>) {
         }
         .forEach { adapter ->
             adapter.convertAndStore(
-                args.toList(),
                 InputStreamReader(System.`in`),
                 OutputStreamWriter(System.out),
             )

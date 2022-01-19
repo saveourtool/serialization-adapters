@@ -18,7 +18,7 @@ abstract class Adapter<T : Any>(
     private val decoder: StringFormat,
     private val tool: Tool,
 ) {
-    abstract fun mapToSarifResult(t: T): Result
+    abstract fun mapToSarifResults(t: T): List<Result>
 
     open fun sarifBuilder(results: List<Result>) = SarifSchema210(
         version = Version.The210,
@@ -30,19 +30,19 @@ abstract class Adapter<T : Any>(
         )
     )
 
-    fun convertAndStore(args: List<String>, input: InputStreamReader, output: OutputStreamWriter) {
-        val sarif = convert(args, input)
+    fun convertAndStore(input: InputStreamReader, output: OutputStreamWriter) {
+        val sarif = convert(input)
         output.use {
             it.buffered().write(Json.encodeToString(sarif))
         }
     }
 
-    private fun convert(args: List<String>, input: InputStreamReader): SarifSchema210 {
+    private fun convert(input: InputStreamReader): SarifSchema210 {
         val decodedObject = input.readText().let {
             decoder.decodeFromString(serializer(type.java), it)
         }
         return sarifBuilder(
-            results = listOf(mapToSarifResult(decodedObject as T))
+            results = mapToSarifResults(decodedObject as T)
         )
     }
 }
