@@ -1,4 +1,4 @@
-rootProject.name = "adapter-example"
+rootProject.name = "json-adapter-example"
 
 dependencyResolutionManagement {
     repositories {

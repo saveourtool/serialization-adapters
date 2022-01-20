@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
 import org.cqfn.save.adapter.AdapterProxy
 import org.cqfn.save.adapter.SarifAdapter
 
-class ExampleAdapterProxy : AdapterProxy {
+class JsonExampleAdapterProxy : AdapterProxy {
     override fun adapter() = SarifAdapter<List<Example>>(
         decoder = Json,
     ) { exampleList ->
