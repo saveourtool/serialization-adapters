@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
         .forEach { adapter ->
             adapter.convertAndStore(
                 InputStreamReader(System.`in`),
-                OutputStreamWriter(System.out),
+                OutputStreamWriter(System.`out`),
             )
         }
 }
