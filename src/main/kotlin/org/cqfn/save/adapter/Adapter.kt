@@ -18,10 +18,6 @@ abstract class Adapter<T : Any>(
     private val decoder: StringFormat,
     private val tool: Tool,
 ) {
-
-    /**
-     * [t] is of the same type as [type], but needs to be cast manually
-     */
     abstract fun mapToSarifResults(t: T): List<Result>
 
     open fun sarifBuilder(results: List<Result>) = SarifSchema210(
