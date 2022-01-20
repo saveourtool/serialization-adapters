@@ -5,9 +5,8 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.kotlinx.serialization.core)
-    implementation(libs.sarif4k)
-    implementation(libs.save.plugin.warn)
+    api(libs.kotlinx.serialization.core)
+    api(libs.sarif4k)
 }
 
 application {
