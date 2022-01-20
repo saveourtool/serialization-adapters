@@ -1,9 +1,9 @@
 # SARIF adapters
 ## Project's goal
-Convert any format into SARIF
+Convert any format into SARIF (or any other format too).
 
 ## Adding a custom format
-- Implement a subclass of `Adapter` and `AdapterProxy`
+- Implement a subclass of `AdapterProxy`. Preferable way is to use `SarifAdapter` factory method, but if you need more granular control of functionality, you can extend classes directly.
 - Create a Service Provider Interface file `META-INF/services/org.cqfn.save.adapter.AdapterProxy`
 
 ## Running the application
