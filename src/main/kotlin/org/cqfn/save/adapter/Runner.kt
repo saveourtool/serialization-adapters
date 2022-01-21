@@ -10,6 +10,10 @@ fun main(args: Array<String>) {
         .map {
             it.adapter()
         }
+        .run {
+            if (isEmpty()) println("No service providers have been found")
+            this
+        }
         .forEach { adapter ->
             adapter.convertAndStore(
                 InputStreamReader(System.`in`),
