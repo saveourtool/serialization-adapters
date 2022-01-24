@@ -38,7 +38,7 @@ publishing {
 }
 
 signing {
-    useInMemoryPgpKeys(findProperty("signingKey") as String?, findProperty("signingPassword") as String?)
+    useInMemoryPgpKeys(System.getenv("GPG_SEC"), System.getenv("GPG_PASSWORD"))
     sign(*extensions.getByType<PublishingExtension>().publications.toTypedArray())
 }
 

@@ -7,6 +7,9 @@ on:
     branches:
       - main
   pull_request:
+env:
+  GPG_SEC: ${{ secrets.PGP_SEC }}
+  GPG_PASSWORD: ${{ secrets.PGP_PASSWORD }}
 
 jobs:
   release:
@@ -32,5 +35,3 @@ jobs:
             publishToSonatype
             -PsonatypeUsername=${{ secrets.SONATYPE_USER }}
             -PsonatypePassword=${{ secrets.SONATYPE_PASSWORD }}
-            -PsigningKey='${{ secrets.PGP_SEC }}'
-            -PsigningPassword='${{ secrets.PGP_PASSWORD }}'
