@@ -6,7 +6,6 @@ on:
       - 'v*'
     branches:
       - main
-  pull_request:
 env:
   GPG_SEC: ${{ secrets.PGP_SEC }}
   GPG_PASSWORD: ${{ secrets.PGP_PASSWORD }}
@@ -25,11 +24,20 @@ jobs:
         with:
           java-version: 11
           distribution: zulu
+      - name: gradle release from tag
+        uses: gradle/gradle-build-action@v2
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        with:
+          arguments: |
+            publishToSonatype
+            closeSonatypeStagingRepository
+            -Preckon.stage=final
+            -PsonatypeUsername=${{ secrets.SONATYPE_USER }}
+            -PsonatypePassword=${{ secrets.SONATYPE_PASSWORD }}
       - name: gradle snapshot from branch
         uses: gradle/gradle-build-action@v2
         # if workflow is triggered after push to a branch, deploy snapshot
-#        if: ${{ startsWith(github.ref, 'refs/heads/') }}
-        if: ${{ startsWith(github.ref, 'refs/pull/') }}
+        if: ${{ startsWith(github.ref, 'refs/heads/') }}
         with:
           arguments: |
             publishToSonatype

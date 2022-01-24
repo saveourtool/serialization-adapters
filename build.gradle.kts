@@ -5,11 +5,17 @@ plugins {
     `maven-publish`
     signing
     alias(libs.plugins.shadow)
+    alias(libs.plugins.reckon)
 }
 
 dependencies {
     api(libs.kotlinx.serialization.core)
     api(libs.sarif4k)
+}
+
+reckon {
+    scopeFromProp()
+    snapshotFromProp()
 }
 
 application {
