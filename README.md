@@ -25,5 +25,5 @@ Prerequisites: Java.
 Build a jar file for the custom format and place it on the classpath, along with `save-adapters-<version>-all.jar`.
 Then write serialized representation of your data into app's stdin:
 ```bash
-cat my-data.json | java -cp *
+cat my-data.json | java -cp * org.cqfn.save.adapter.RunnerKt
 ```
