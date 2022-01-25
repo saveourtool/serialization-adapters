@@ -1,5 +1,8 @@
 rootProject.name = "save-adapters"
 
+include("examples:csv-example")
+include("examples:json-example")
+
 dependencyResolutionManagement {
     repositories {
         mavenCentral()

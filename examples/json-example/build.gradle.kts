@@ -1,8 +1,19 @@
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm")
     kotlin("plugin.serialization") version "1.6.10"
+    id("com.github.johnrengelman.shadow")
 }
 
 dependencies {
     implementation("org.cqfn.save:save-adapters:0.1.0")
 }
+
+tasks {
+    shadowJar {
+        dependencies {
+            exclude(dependency("org.cqfn.save:save-adapters"))
+        }
+    }
+}
+
+tasks.named("build") { finalizedBy("shadowJar") }

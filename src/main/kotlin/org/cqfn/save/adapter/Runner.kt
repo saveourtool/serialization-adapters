@@ -1,10 +1,12 @@
 package org.cqfn.save.adapter
 
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
+import java.io.*
 import java.util.ServiceLoader
 
 fun main(args: Array<String>) {
+    val input: InputStream = if (args.isEmpty()) System.`in` else (FileInputStream(args[0]))
+    val output: OutputStream = if (args.size <= 1) System.`out` else(FileOutputStream(args[1]))
+
     ServiceLoader.load(AdapterProxy::class.java)
         .filterNotNull()
         .map {
@@ -16,8 +18,8 @@ fun main(args: Array<String>) {
         }
         .forEach { adapter ->
             adapter.convertAndStore(
-                InputStreamReader(System.`in`),
-                OutputStreamWriter(System.`out`),
+                InputStreamReader(input),
+                OutputStreamWriter(output),
             )
         }
 }

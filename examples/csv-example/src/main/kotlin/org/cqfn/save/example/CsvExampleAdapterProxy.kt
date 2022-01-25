@@ -15,6 +15,7 @@ import org.cqfn.save.adapter.SarifAdapter
 class CsvExampleAdapterProxy : AdapterProxy {
     override fun adapter() = SarifAdapter<List<Example>>(
         decoder = Csv {
+            ignoreUnknownColumns = true
             hasHeaderRecord = true
             // this one is for running on Windows
             recordSeparator = "\r\n"
@@ -22,12 +23,12 @@ class CsvExampleAdapterProxy : AdapterProxy {
     ) { exampleList ->
         exampleList.map {
             Result(
-                message = Message(text = it.message),
+                message = Message(text = it.smell),
                 locations = listOf(
                     Location(
                         physicalLocation = PhysicalLocation(
                             artifactLocation = ArtifactLocation(
-                                uri = it.name
+                                uri = it.path
                             )
                         )
                     )

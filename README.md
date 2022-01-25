@@ -24,12 +24,20 @@ We have prepared some examples that can be found [here](https://github.com/analy
 ## How it works:
 <img src="/flow.png" width="700px"/>
 
-
-## Running the cli application
+## Running the cli application (stdin - stdout)
 Prerequisites: Java.
 
-Build a jar file for the custom format and place it on the classpath.
-Then write serialized representation of your data into app's stdin:
+1) Put the fat-jar with your custom type into the same directory with `save-adapters.jar` 
+ 
+2) Then write serialized representation of your data into app's stdin:
 ```bash
 cat my-data.json | java -cp * org.cqfn.save.adapter.RunnerKt
+```
+
+## Running the cli application (file input - file output)
+1) Put the `fat-jar` with your custom type into the same directory with `save-adapters.jar`
+
+2) Run the following command to convert your file:
+```bash
+java -cp * org.cqfn.save.adapter.RunnerKt "/full/path/my-file-input" "/full/path/my-file-output.sarif"
 ```
