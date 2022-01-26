@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    implementation("org.cqfn.save:save-adapters:0.1.0-SNAPSHOT")
+    implementation("org.cqfn.save:save-adapters:0.1.0")
     implementation("de.brudaswen.kotlinx.serialization:kotlinx-serialization-csv:2.0.0")
 }
 
