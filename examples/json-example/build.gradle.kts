@@ -4,5 +4,5 @@ plugins {
 }
 
 dependencies {
-    implementation("org.cqfn.save:save-adapters:0.1.0-SNAPSHOT")
+    implementation("org.cqfn.save:save-adapters:0.1.0")
 }

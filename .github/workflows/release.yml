@@ -31,7 +31,6 @@ jobs:
           arguments: |
             publishToSonatype
             closeSonatypeStagingRepository
-            -Preckon.stage=final
             -PsonatypeUsername=${{ secrets.SONATYPE_USER }}
             -PsonatypePassword=${{ secrets.SONATYPE_PASSWORD }}
       - name: gradle snapshot from branch
