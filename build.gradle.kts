@@ -20,6 +20,7 @@ reckon {
 
 java {
     withJavadocJar()
+    withSourcesJar()
 }
 
 application {
