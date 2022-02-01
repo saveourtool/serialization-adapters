@@ -31,6 +31,7 @@ jobs:
           arguments: |
             publishToSonatype
             closeSonatypeStagingRepository
+            :save-adapter:shadowJar
             -PsonatypeUsername=${{ secrets.SONATYPE_USER }}
             -PsonatypePassword=${{ secrets.SONATYPE_PASSWORD }}
       - name: gradle snapshot from branch
@@ -56,7 +57,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/libs/save-adapters-*-all.jar
+          file: save-adapter/build/libs/runner-*-all.jar
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
