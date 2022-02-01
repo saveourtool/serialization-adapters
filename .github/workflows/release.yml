@@ -42,3 +42,21 @@ jobs:
             publishToSonatype
             -PsonatypeUsername=${{ secrets.SONATYPE_USER }}
             -PsonatypePassword=${{ secrets.SONATYPE_PASSWORD }}
+
+      - name: Create Github Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload release assets
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/libs/save-adapters-*-all.jar
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
