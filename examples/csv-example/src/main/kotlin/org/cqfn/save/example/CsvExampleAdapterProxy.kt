@@ -7,7 +7,6 @@ import io.github.detekt.sarif4k.PhysicalLocation
 import io.github.detekt.sarif4k.Result
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.csv.Csv
-import kotlinx.serialization.json.Json
 import org.cqfn.save.adapter.AdapterProxy
 import org.cqfn.save.adapter.SarifAdapter
 

@@ -11,7 +11,9 @@ import org.cqfn.save.adapter.SarifAdapter
 
 class JsonExampleAdapterProxy : AdapterProxy {
     override fun adapter() = SarifAdapter<List<Example>>(
-        decoder = Json,
+        decoder = Json {
+           ignoreUnknownKeys = true
+        },
     ) { exampleList ->
         exampleList.map {
             Result(
@@ -20,7 +22,7 @@ class JsonExampleAdapterProxy : AdapterProxy {
                     Location(
                         physicalLocation = PhysicalLocation(
                             artifactLocation = ArtifactLocation(
-                                uri = it.name
+                                uri = it.filePath
                             )
                         )
                     )
