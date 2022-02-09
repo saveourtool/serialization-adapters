@@ -4,6 +4,8 @@ import io.github.detekt.sarif4k.ArtifactLocation
 import io.github.detekt.sarif4k.Location
 import io.github.detekt.sarif4k.Message
 import io.github.detekt.sarif4k.PhysicalLocation
+import io.github.detekt.sarif4k.PropertyBag
+import io.github.detekt.sarif4k.Region
 import io.github.detekt.sarif4k.Result
 import kotlinx.serialization.json.Json
 import org.cqfn.save.adapter.AdapterProxy
@@ -24,9 +26,20 @@ class JsonExampleAdapterProxy : AdapterProxy {
                             artifactLocation = ArtifactLocation(
                                 uri = it.filePath
                             )
-                        )
+                        ),
+                        annotations = it.refactoring.map {
+                            val location = it.lineColumnList.single()
+                            Region(
+                                startLine = location.startLine,
+                                startColumn = location.startColumn,
+                                endLine = location.endLine,
+                                endColumn = location.endColumn
+                            )
+                        }
                     )
-                )
+                ),
+                properties = PropertyBag(listOf(it.engine, it.className, it.entityType, it.entityName)),
+                ruleID = it.badSmellType,
             )
         }
     }
