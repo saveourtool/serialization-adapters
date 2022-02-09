@@ -28,7 +28,7 @@ class JsonExampleAdapterProxy : AdapterProxy {
                             )
                         ),
                         annotations = it.refactoring.map {
-                            val location = it.lineColumnList.single()
+                            val location = it.statements.single()
                             Region(
                                 startLine = location.startLine,
                                 startColumn = location.startColumn,
@@ -38,7 +38,15 @@ class JsonExampleAdapterProxy : AdapterProxy {
                         }
                     )
                 ),
-                properties = PropertyBag(listOf(it.engine, it.className, it.entityType, it.entityName)),
+                properties = PropertyBag(
+                    listOf(
+                        "engine: ${it.engine}",
+                        "className: ${it.className}",
+                        "entityType: ${it.entityType}",
+                        "entityName: ${it.entityName}",
+                        "startLine: ${it.startLine}",
+                    )
+                ),
                 ruleID = it.badSmellType,
             )
         }

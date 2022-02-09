@@ -5,10 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Example(val engine: String, val filePath: String, val className: String, val entityType: String, val entityName: String,
-                   val badSmellType: String, val message: String, val refactoring: List<Statements>)
+                   val badSmellType: String, val message: String, val refactoring: List<Statements>, val startLine: Long)
 
 @Serializable
-data class Statements(val lineColumnList: List<LineColumn>)
+data class Statements(val statements: List<LineColumn>)
 
 @Serializable
 data class LineColumn(
