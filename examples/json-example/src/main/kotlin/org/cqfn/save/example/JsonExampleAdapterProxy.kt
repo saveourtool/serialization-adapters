@@ -17,38 +17,23 @@ class JsonExampleAdapterProxy : AdapterProxy {
            ignoreUnknownKeys = true
         },
     ) { exampleList ->
-        exampleList.map {
-            Result(
-                message = Message(text = it.message),
-                locations = listOf(
-                    Location(
-                        physicalLocation = PhysicalLocation(
-                            artifactLocation = ArtifactLocation(
-                                uri = it.filePath
+        exampleList.flatMap { example ->
+            example.refactoring.map {
+                val location = it.statements.single()
+                Result(
+                    message = Message(text = example.message),
+                    locations = listOf(
+                        Location(
+                            physicalLocation = PhysicalLocation(
+                                artifactLocation = ArtifactLocation(
+                                    uri = example.filePath
+                                ),
+                                region = Region(startLine = location.startLine, startColumn = location.startColumn)
                             )
-                        ),
-                        annotations = it.refactoring.map {
-                            val location = it.statements.single()
-                            Region(
-                                startLine = location.startLine,
-                                startColumn = location.startColumn,
-                                endLine = location.endLine,
-                                endColumn = location.endColumn
-                            )
-                        }
+                        )
                     )
-                ),
-                properties = PropertyBag(
-                    listOf(
-                        "engine: ${it.engine}",
-                        "className: ${it.className}",
-                        "entityType: ${it.entityType}",
-                        "entityName: ${it.entityName}",
-                        "startLine: ${it.startLine}",
-                    )
-                ),
-                ruleID = it.badSmellType,
-            )
+                )
+            }
         }
     }
 }
