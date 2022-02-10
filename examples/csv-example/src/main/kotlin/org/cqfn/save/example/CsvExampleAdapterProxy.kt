@@ -4,10 +4,10 @@ import io.github.detekt.sarif4k.ArtifactLocation
 import io.github.detekt.sarif4k.Location
 import io.github.detekt.sarif4k.Message
 import io.github.detekt.sarif4k.PhysicalLocation
+import io.github.detekt.sarif4k.Region
 import io.github.detekt.sarif4k.Result
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.csv.Csv
-import kotlinx.serialization.json.Json
 import org.cqfn.save.adapter.AdapterProxy
 import org.cqfn.save.adapter.SarifAdapter
 
@@ -29,7 +29,8 @@ class CsvExampleAdapterProxy : AdapterProxy {
                         physicalLocation = PhysicalLocation(
                             artifactLocation = ArtifactLocation(
                                 uri = it.path
-                            )
+                            ),
+                            region = Region(startLine = it.startLine)
                         )
                     )
                 )
