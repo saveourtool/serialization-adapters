@@ -4,10 +4,16 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Example(val filePath: String, val message: String, val refactoring: List<Statements>)
+data class Example(
+    val filePath: String,
+    val message: String,
+    val refactoring: List<Statements>,
+)
 
 @Serializable
-data class Statements(val statements: List<LineColumn>)
+data class Statements(
+    val statements: List<LineColumn>
+)
 
 @Serializable
 data class LineColumn(
