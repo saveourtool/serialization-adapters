@@ -17,23 +17,20 @@ class JsonExampleAdapterProxy : AdapterProxy {
            ignoreUnknownKeys = true
         },
     ) { exampleList ->
-        exampleList.flatMap { example ->
-            example.refactoring.map {
-                val location = it.statements.single()
-                Result(
-                    message = Message(text = example.message),
-                    locations = listOf(
-                        Location(
-                            physicalLocation = PhysicalLocation(
-                                artifactLocation = ArtifactLocation(
-                                    uri = example.filePath
-                                ),
-                                region = Region(startLine = location.startLine, startColumn = location.startColumn)
-                            )
+        exampleList.map { example ->
+            Result(
+                message = Message(text = example.badSmellType),
+                locations = listOf(
+                    Location(
+                        physicalLocation = PhysicalLocation(
+                            artifactLocation = ArtifactLocation(
+                                uri = example.filePath
+                            ),
+                            region = Region(startLine = example.startLine)
                         )
                     )
                 )
-            }
+            )
         }
     }
 }
